@@ -1,0 +1,65 @@
+data = state
+vueX = redux
+vue router = router
+
++ roor element: require
+
++ 2 ways binding:
+    +bind du lieu 2 chieu
+
++ phu thuoc vao kieu cua element
+
++lifrcycle: vong doi cua component trong vue
+
++ binding:
+    + value binding: {{ }}
+    property binding:
+    v-bind:[tenthuoctinh]="dgrere" (id, class, style,...)
+        + viet tat (co the viet :[tenthuoctinh] khong can v-bind)
+
++model: lien ket element voi property
+
++event handing:
+    +bat su kien tu cac element
+        +v-on:[ten su kien]="sgtregre"
+            viet tat: v-on:click -> @click
+        +Prevent default event:
+            + huy bo event mac dinh cua element di -> lamf tiep cai gi do theo y thich
+
++ ref:
+    Anh xa den chinh element
+
++Conditional rendering:
+    + v-show: an/hien 1 element theo dieu kien
+    + v-hide
+    + v-if
+    + v-else-if
+        +v-el (else)
+
++list rendering:
+    +v-for
+
++methods:
+    +function cua vue object
+
++watch
+    Thao doi su thay doi cua data
+
++hood:
+    mounted
+
+Props:
+    Dua du lieu day tu component cha sang component con
+    Cach khai bao:
+        +dung mang ten cac prop
+        +dungf object
+
+    Props =data
+
+Event:
+
+filter: 
+    bien doi du lieu truoc khi no dc render
+
+    https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
+    https://www.youtube.com/watch?v=j97QtHf0CHY&t=882s
