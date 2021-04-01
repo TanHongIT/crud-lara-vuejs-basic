@@ -2132,13 +2132,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       students: {},
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      edit_name: "",
+      edit_email: "",
+      edit_phone: ""
     };
   },
   mounted: function mounted() {
@@ -2159,8 +2163,19 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get("all_students/?page=" + page).then(function (response) {
-        _this.students = response.data;
         console.log(response.data);
+        _this.students = response.data;
+      });
+    },
+    // create method edit student
+    editStudent: function editStudent(id) {
+      var _this2 = this;
+
+      axios.get("edit_student/" + id).then(function (response) {
+        console.log(response.data);
+        _this2.edit_name = response.data.name;
+        _this2.edit_email = response.data.email;
+        _this2.edit_phone = response.data.phone;
       });
     }
   }
@@ -38595,7 +38610,46 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(student.phone))]),
                       _vm._v(" "),
-                      _vm._m(1, true)
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editStudent(student.id)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    Edit\n                  "
+                            )
+                          ]
+                        ),
+                        _vm._v("\n                  |\n                  "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    Delete\n                  "
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   }),
                   0
@@ -38631,7 +38685,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
@@ -38645,19 +38699,19 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
+                          value: _vm.edit_name,
+                          expression: "edit_name"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: { type: "text", placeholder: "Enter Name" },
-                      domProps: { value: _vm.name },
+                      domProps: { value: _vm.edit_name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.name = $event.target.value
+                          _vm.edit_name = $event.target.value
                         }
                       }
                     })
@@ -38673,19 +38727,19 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.email,
-                          expression: "email"
+                          value: _vm.edit_email,
+                          expression: "edit_email"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: { type: "email", placeholder: "Enter email" },
-                      domProps: { value: _vm.email },
+                      domProps: { value: _vm.edit_email },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.email = $event.target.value
+                          _vm.edit_email = $event.target.value
                         }
                       }
                     })
@@ -38701,19 +38755,19 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.phone,
-                          expression: "phone"
+                          value: _vm.edit_phone,
+                          expression: "edit_phone"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: { type: "phone", placeholder: "Enter Phone" },
-                      domProps: { value: _vm.phone },
+                      domProps: { value: _vm.edit_phone },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.phone = $event.target.value
+                          _vm.edit_phone = $event.target.value
                         }
                       }
                     })
@@ -38736,7 +38790,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(2)
             ])
           ]
         )
@@ -38761,38 +38815,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#exampleModal"
-          }
-        },
-        [_vm._v("\n                    Edit\n                  ")]
-      ),
-      _vm._v("\n                  |\n                  "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#exampleModal"
-          }
-        },
-        [_vm._v("\n                    Delete\n                  ")]
-      )
     ])
   },
   function() {

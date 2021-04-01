@@ -70,6 +70,7 @@
                   <td>
                     <button
                       type="button"
+                      @click="editStudent(student.id)"
                       class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#exampleModal"
@@ -126,7 +127,7 @@
                 <label for="exampleInputEmail1">Name</label>
                 <input
                   type="text"
-                  v-model="name"
+                  v-model="edit_name"
                   class="form-control"
                   placeholder="Enter Name"
                 />
@@ -135,7 +136,7 @@
                 <label for="exampleInputEmail1">Email</label>
                 <input
                   type="email"
-                  v-model="email"
+                  v-model="edit_email"
                   class="form-control"
                   placeholder="Enter email"
                 />
@@ -144,7 +145,7 @@
                 <label for="exampleInputEmail1">Phone</label>
                 <input
                   type="phone"
-                  v-model="phone"
+                  v-model="edit_phone"
                   class="form-control"
                   placeholder="Enter Phone"
                 />
@@ -183,6 +184,10 @@ export default {
       name: "",
       email: "",
       phone: "",
+
+      edit_name: "",
+      edit_email: "",
+      edit_phone: "",
     };
   },
   mounted() {
@@ -201,8 +206,17 @@ export default {
     // Our method to GET results from a Laravel endpoint
     getResults(page = 1) {
       axios.get("all_students/?page=" + page).then((response) => {
-        this.students = response.data;
         console.log(response.data);
+        this.students = response.data;
+      });
+    },
+    // create method edit student
+    editStudent(id) {
+      axios.get("edit_student/" + id).then((response) => {
+        console.log(response.data);
+        this.edit_name = response.data.name;
+        this.edit_email = response.data.email;
+        this.edit_phone = response.data.phone;
       });
     },
   },
