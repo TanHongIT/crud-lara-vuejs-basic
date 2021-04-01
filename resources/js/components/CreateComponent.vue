@@ -121,8 +121,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form>
+          <form>
+            <div class="modal-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
                 <input
@@ -150,26 +150,25 @@
                   placeholder="Enter Phone"
                 />
               </div>
-
+            </div>
+            <div class="modal-footer">
               <button
-                type="submit"
-                v-on:click.prevent="saveStudent"
-                class="btn btn-primary"
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
               >
-                Submit
+                Close
               </button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+              <button
+                type="button"
+                data-dismiss="modal"
+                v-on:click.prevent="updateStudent"
+                class="btn btn-success"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -188,6 +187,8 @@ export default {
       edit_name: "",
       edit_email: "",
       edit_phone: "",
+
+      id: "",
     };
   },
   mounted() {
@@ -196,11 +197,15 @@ export default {
   },
   methods: {
     saveStudent() {
-      axios.post("save_student", {
-        name: this.name,
-        email: this.email,
-        phone: this.phone,
-      });
+      axios
+        .post("save_student", {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+        })
+        .then((response) => {
+          this.getResults(); //show list student after add
+        });
     },
 
     // Our method to GET results from a Laravel endpoint
@@ -214,10 +219,24 @@ export default {
     editStudent(id) {
       axios.get("edit_student/" + id).then((response) => {
         console.log(response.data);
+        this.id = response.data.id;
         this.edit_name = response.data.name;
         this.edit_email = response.data.email;
         this.edit_phone = response.data.phone;
       });
+    },
+    updateStudent() {
+      console.log(this.id);
+      axios
+        .put("update_student", {
+          id: this.id,
+          name: this.edit_name,
+          email: this.edit_email,
+          phone: this.edit_phone,
+        })
+        .then((response) => {
+          this.getResults(); //show list student after update
+        });
     },
   },
 };
