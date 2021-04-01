@@ -24,4 +24,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         return response()->json($student);
     }
+    public function update_student(){
+        return 'test';
+    }
 }

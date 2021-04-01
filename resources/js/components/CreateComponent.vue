@@ -222,6 +222,12 @@ export default {
     },
     updateStudent(){
       console.log(this.id);
+      axios.put("update_student" , {
+        name: this.edit_name,
+        email: this.edit_email,
+        phone: this.edit_phone,
+      })
+      .then(response => console.log(response));
     },
   },
 };

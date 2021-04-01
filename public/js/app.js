@@ -2180,6 +2180,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateStudent: function updateStudent() {
       console.log(this.id);
+      axios.put("update_student", {
+        name: this.edit_name,
+        email: this.edit_email,
+        phone: this.edit_phone
+      }).then(function (response) {
+        return console.log(response);
+      });
     }
   }
 });
