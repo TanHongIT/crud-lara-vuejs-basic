@@ -15,4 +15,9 @@ class StudentController extends Controller
         $student->save();
         return 'fersgdre';
     }
+
+    public function all_students(){
+        $students = Student::paginate(5);
+        return response()->json($students);
+    }
 }

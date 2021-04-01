@@ -62,17 +62,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>
-                      Dele
-                  </td>
+                <tr v-for="(student, index) in students.data" :key="student.id">
+                  <th scope="row">{{index+1}}</th>
+                  <td>{{student.name}}</td>
+                  <td>{{student.email}}</td>
+                  <td>{{student.phone}}</td>
+                  <td>Dele</td>
                 </tr>
               </tbody>
             </table>
+            <pagination
+              :data="students"
+              @pagination-change-page="getResults"
+            ></pagination>
           </div>
         </div>
       </div>
@@ -84,13 +86,15 @@
 export default {
   data() {
     return {
+      students: {},
       name: "",
       email: "",
       phone: "",
     };
   },
   mounted() {
-    console.log("Component mounted.");
+    // Fetch initial results
+    this.getResults();
   },
   methods: {
     saveStudent() {
@@ -98,6 +102,14 @@ export default {
         name: this.name,
         email: this.email,
         phone: this.phone,
+      });
+    },
+
+    // Our method to GET results from a Laravel endpoint
+    getResults(page = 1) {
+      axios.get("all_students/?page=" + page).then((response) => {
+        this.students = response.data;
+        console.log(response.data);
       });
     },
   },
