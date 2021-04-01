@@ -2131,6 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2150,35 +2151,42 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveStudent: function saveStudent() {
+      var _this = this;
+
       axios.post("save_student", {
         name: this.name,
         email: this.email,
         phone: this.phone
+      }).then(function (response) {
+        _this.getResults(); //show list student after add
+
       });
     },
     // Our method to GET results from a Laravel endpoint
     getResults: function getResults() {
-      var _this = this;
+      var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get("all_students/?page=" + page).then(function (response) {
         console.log(response.data);
-        _this.students = response.data;
+        _this2.students = response.data;
       });
     },
     // create method edit student
     editStudent: function editStudent(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("edit_student/" + id).then(function (response) {
         console.log(response.data);
-        _this2.id = response.data.id;
-        _this2.edit_name = response.data.name;
-        _this2.edit_email = response.data.email;
-        _this2.edit_phone = response.data.phone;
+        _this3.id = response.data.id;
+        _this3.edit_name = response.data.name;
+        _this3.edit_email = response.data.email;
+        _this3.edit_phone = response.data.phone;
       });
     },
     updateStudent: function updateStudent() {
+      var _this4 = this;
+
       console.log(this.id);
       axios.put("update_student", {
         id: this.id,
@@ -2186,7 +2194,8 @@ __webpack_require__.r(__webpack_exports__);
         email: this.edit_email,
         phone: this.edit_phone
       }).then(function (response) {
-        return console.log(response);
+        _this4.getResults(); //show list student after update
+
       });
     }
   }
@@ -38798,8 +38807,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
+                      staticClass: "btn btn-success",
+                      attrs: { type: "button", "data-dismiss": "modal" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()

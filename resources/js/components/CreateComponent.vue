@@ -161,8 +161,9 @@
               </button>
               <button
                 type="button"
+                data-dismiss="modal"
                 v-on:click.prevent="updateStudent"
-                class="btn btn-primary"
+                class="btn btn-success"
               >
                 Save changes
               </button>
@@ -196,11 +197,15 @@ export default {
   },
   methods: {
     saveStudent() {
-      axios.post("save_student", {
-        name: this.name,
-        email: this.email,
-        phone: this.phone,
-      });
+      axios
+        .post("save_student", {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+        })
+        .then((response) => {
+          this.getResults(); //show list student after add
+        });
     },
 
     // Our method to GET results from a Laravel endpoint
@@ -229,7 +234,9 @@ export default {
           email: this.edit_email,
           phone: this.edit_phone,
         })
-        .then((response) => console.log(response));
+        .then((response) => {
+          this.getResults(); //show list student after update
+        });
     },
   },
 };
