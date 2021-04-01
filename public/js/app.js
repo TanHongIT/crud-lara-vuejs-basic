@@ -2131,8 +2131,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2142,7 +2140,8 @@ __webpack_require__.r(__webpack_exports__);
       phone: "",
       edit_name: "",
       edit_email: "",
-      edit_phone: ""
+      edit_phone: "",
+      id: ''
     };
   },
   mounted: function mounted() {
@@ -2173,10 +2172,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("edit_student/" + id).then(function (response) {
         console.log(response.data);
+        _this2.id = response.data.id;
         _this2.edit_name = response.data.name;
         _this2.edit_email = response.data.email;
         _this2.edit_phone = response.data.phone;
       });
+    },
+    updateStudent: function updateStudent() {
+      console.log(this.id);
     }
   }
 });
@@ -38687,8 +38690,8 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(1),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("form", [
+              _c("form", [
+                _c("div", { staticClass: "modal-body" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "exampleInputEmail1" } }, [
                       _vm._v("Name")
@@ -38771,26 +38774,35 @@ var render = function() {
                         }
                       }
                     })
-                  ]),
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("\n              Close\n            ")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
+                      attrs: { type: "button" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.saveStudent($event)
+                          return _vm.updateStudent($event)
                         }
                       }
                     },
-                    [_vm._v("\n              Submit\n            ")]
+                    [_vm._v("\n              Save changes\n            ")]
                   )
                 ])
-              ]),
-              _vm._v(" "),
-              _vm._m(2)
+              ])
             ])
           ]
         )
@@ -38839,27 +38851,6 @@ var staticRenderFns = [
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("\n            Close\n          ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
       )
     ])
   }

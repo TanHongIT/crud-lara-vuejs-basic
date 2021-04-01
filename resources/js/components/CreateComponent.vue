@@ -121,8 +121,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form>
+          <form>
+            <div class="modal-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
                 <input
@@ -150,26 +150,24 @@
                   placeholder="Enter Phone"
                 />
               </div>
-
+            </div>
+            <div class="modal-footer">
               <button
-                type="submit"
-                v-on:click.prevent="saveStudent"
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                v-on:click.prevent="updateStudent"
                 class="btn btn-primary"
               >
-                Submit
+                Save changes
               </button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -188,6 +186,8 @@ export default {
       edit_name: "",
       edit_email: "",
       edit_phone: "",
+
+      id: '',
     };
   },
   mounted() {
@@ -214,10 +214,14 @@ export default {
     editStudent(id) {
       axios.get("edit_student/" + id).then((response) => {
         console.log(response.data);
+        this.id = response.data.id;
         this.edit_name = response.data.name;
         this.edit_email = response.data.email;
         this.edit_phone = response.data.phone;
       });
+    },
+    updateStudent(){
+      console.log(this.id);
     },
   },
 };
