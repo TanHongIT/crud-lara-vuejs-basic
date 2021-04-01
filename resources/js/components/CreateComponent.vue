@@ -187,7 +187,7 @@ export default {
       edit_email: "",
       edit_phone: "",
 
-      id: '',
+      id: "",
     };
   },
   mounted() {
@@ -220,14 +220,16 @@ export default {
         this.edit_phone = response.data.phone;
       });
     },
-    updateStudent(){
+    updateStudent() {
       console.log(this.id);
-      axios.put("update_student" , {
-        name: this.edit_name,
-        email: this.edit_email,
-        phone: this.edit_phone,
-      })
-      .then(response => console.log(response));
+      axios
+        .put("update_student", {
+          id: this.id,
+          name: this.edit_name,
+          email: this.edit_email,
+          phone: this.edit_phone,
+        })
+        .then((response) => console.log(response));
     },
   },
 };

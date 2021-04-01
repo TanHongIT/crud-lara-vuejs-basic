@@ -2141,7 +2141,7 @@ __webpack_require__.r(__webpack_exports__);
       edit_name: "",
       edit_email: "",
       edit_phone: "",
-      id: ''
+      id: ""
     };
   },
   mounted: function mounted() {
@@ -2181,6 +2181,7 @@ __webpack_require__.r(__webpack_exports__);
     updateStudent: function updateStudent() {
       console.log(this.id);
       axios.put("update_student", {
+        id: this.id,
         name: this.edit_name,
         email: this.edit_email,
         phone: this.edit_phone
