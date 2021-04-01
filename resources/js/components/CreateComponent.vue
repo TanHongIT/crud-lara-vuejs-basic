@@ -63,11 +63,29 @@
               </thead>
               <tbody>
                 <tr v-for="(student, index) in students.data" :key="student.id">
-                  <th scope="row">{{index+1}}</th>
-                  <td>{{student.name}}</td>
-                  <td>{{student.email}}</td>
-                  <td>{{student.phone}}</td>
-                  <td>Dele</td>
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.phone }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      Edit
+                    </button>
+                    |
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -75,6 +93,81 @@
               :data="students"
               @pagination-change-page="getResults"
             ></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input
+                  type="text"
+                  v-model="name"
+                  class="form-control"
+                  placeholder="Enter Name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input
+                  type="email"
+                  v-model="email"
+                  class="form-control"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Phone</label>
+                <input
+                  type="phone"
+                  v-model="phone"
+                  class="form-control"
+                  placeholder="Enter Phone"
+                />
+              </div>
+
+              <button
+                type="submit"
+                v-on:click.prevent="saveStudent"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
