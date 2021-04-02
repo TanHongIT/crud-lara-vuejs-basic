@@ -84,6 +84,19 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'pgsql_production' => [
+            'driver' => 'pgsql',
+            'host' => $host,
+            'port' => env('DB_PORT', '5432'),
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
@@ -148,19 +161,6 @@ return [
             'database' => env('REDIS_CACHE_DB', 1),
         ],
 
-    ],
-
-    'pgsql_production' => [
-        'driver' => 'pgsql',
-        'host' => $host,
-        'port' => env('DB_PORT', '5432'),
-        'database' => $database,
-        'username' => $username,
-        'password' => $password,
-        'charset' => 'utf8',
-        'prefix' => '',
-        'schema' => 'public',
-        'sslmode' => 'prefer',
     ],
 
 ];
