@@ -24,7 +24,8 @@ vue router = router
         +v-on:[ten su kien]="sgtregre"
             viet tat: v-on:click -> @click
         +Prevent default event:
-            + huy bo event mac dinh cua element di -> lamf tiep cai gi do theo y thich
+            + huy bo event mac dinh cua element di -> lam tiep cai gi do theo y thich
+    https://viblo.asia/p/bai-14-event-handling-voi-vuejs-3P0lPze8Kox
 
 + ref:
     Anh xa den chinh element
@@ -40,15 +41,18 @@ vue router = router
     +v-for
 
 +methods:
-    +function cua vue object
+    +function cua vue object (là danh sách các phương thức của component)
 
-+watch
-    Thao doi su thay doi cua data
++watch (watcher)
+    Theo doi su thay doi cua data
+    Với việc sử dụng watch có thể giúp chúng ta theo dõi sự thay đổi và sau đó thực hiện những tính toán phức tạp
 
 +hood:
-    mounted
+    created: thường dùng để gọi API lấy dữ liệu từ server, khởi tạo websocket, lắng nghe event Laravel Echo,... miễn là ta không động gì vào DOM thật là được
 
-Props:
+    mounted: đưa component ra trình duỵet
+
++Props:
     Dua du lieu day tu component cha sang component con
     Cach khai bao:
         +dung mang ten cac prop
@@ -56,13 +60,17 @@ Props:
 
     Props =data
 
-Event:
++Lí do vì sao không dùng JQuery được ở created: Vì ở created là ta mới chỉ có DOM ảo được tạo ra, mà jquery thì chỉ thao tác được với DOM thật, do đó nên nếu muốn dùng JQuery ta cần làm ở mounted (khi DOM ảo đã được đồng bộ với DOM thật)
 
 filter: 
     bien doi du lieu truoc khi no dc render
 
     https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
     https://www.youtube.com/watch?v=j97QtHf0CHY&t=882s
+
++scoped:
+    https://viblo.asia/p/bai-15-scoped-css-trong-vuejs-va-cac-ki-thuat-lien-quan-63vKjakd52R
+    
 
 pagination laravel vue: https://github.com/gilbitron/laravel-vue-pagination
 
