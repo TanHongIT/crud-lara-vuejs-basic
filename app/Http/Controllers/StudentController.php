@@ -19,7 +19,7 @@ class StudentController extends Controller
 
     public function all_students()
     {
-        $students = Student::paginate(5);
+        $students = Student::orderBy('created_at', 'desc')->paginate(5);
         return response()->json($students);
     }
 
