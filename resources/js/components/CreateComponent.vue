@@ -80,9 +80,8 @@
                     |
                     <button
                       type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
+                      class="btn btn-danger"
+                      @click="deleteStudent(student.id)"
                     >
                       Delete
                     </button>
@@ -237,6 +236,12 @@ export default {
         .then((response) => {
           this.getResults(); //show list student after update
         });
+    },
+    // create method delete student
+    deleteStudent(id) {
+      axios.delete("delete_student/" + id).then((response) => {
+        this.getResults(); //show list student after update
+      });
     },
   },
 };
