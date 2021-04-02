@@ -2131,7 +2131,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2195,6 +2194,15 @@ __webpack_require__.r(__webpack_exports__);
         phone: this.edit_phone
       }).then(function (response) {
         _this4.getResults(); //show list student after update
+
+      });
+    },
+    // create method delete student
+    deleteStudent: function deleteStudent(id) {
+      var _this5 = this;
+
+      axios["delete"]("delete_student/" + id).then(function (response) {
+        _this5.getResults(); //show list student after update
 
       });
     }
@@ -38656,11 +38664,12 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-primary",
-                            attrs: {
-                              type: "button",
-                              "data-toggle": "modal",
-                              "data-target": "#exampleModal"
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteStudent(student.id)
+                              }
                             }
                           },
                           [
