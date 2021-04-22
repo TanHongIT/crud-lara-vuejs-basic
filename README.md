@@ -1,6 +1,6 @@
 # 1. Technology
 - PHP
-- Laarvel Framework 8.x
+- Laarvel Framework 5.8
 
 # 2. Configuration requirements
 - Install composer: https://getcomposer.org/
@@ -60,6 +60,12 @@ $ php artisan db:seed --class=DatabaseSeeder
 
 ## Launch project 
 Now, Launch your system...
+
+Run the npm:
+
+```
+$ npm run watch
+```
 
 Run the laravel project on port: http://localhost:8000
 
