@@ -1,3 +1,5 @@
+Create CRUD using Laravel Mix Vuejs.
+
 # 1. Technology
 - PHP
 - Laarvel Framework 5.8
